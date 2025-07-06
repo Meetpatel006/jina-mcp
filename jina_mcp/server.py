@@ -21,9 +21,6 @@ logger = logging.getLogger(__name__)
 # Store connected SSE clients
 sse_clients = set()
 
-# Initialize Jina client
-jina_client = JinaClient()
-
 # Initialize MCP
 mcp = FastMCP(
     "jina-ai-search",
@@ -61,10 +58,16 @@ app.mount("/sse", mcp.sse_app())
     description="Read content from a URL using Jina's Reader API"
 )
 async def read_url(
-    url: str
+    url: str,
+    request: Request
 ) -> Dict[str, Any]:
     """Read content from a URL using Jina's Reader API."""
     try:
+        auth_header = request.headers.get("authorization")
+        if not auth_header or not auth_header.lower().startswith("bearer "):
+            raise ValueError("Missing or invalid Authorization header")
+        api_key = auth_header.split(" ", 1)[1]
+        jina_client = JinaClient(api_key=api_key)
         response = await jina_client.read_url(url)
         return {"result": {"content": response}}
     except Exception as e:
@@ -77,10 +80,16 @@ async def read_url(
     description="Search using Jina's Search API"
 )
 async def search(
-    q: str
+    q: str,
+    request: Request
 ) -> dict:
     """Search using Jina's Search API."""
     try:
+        auth_header = request.headers.get("authorization")
+        if not auth_header or not auth_header.lower().startswith("bearer "):
+            raise ValueError("Missing or invalid Authorization header")
+        api_key = auth_header.split(" ", 1)[1]
+        jina_client = JinaClient(api_key=api_key)
         result = await jina_client.search(q)
         return {"result": result}
     except Exception as e:
