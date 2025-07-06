@@ -59,14 +59,10 @@ app.mount("/sse", mcp.sse_app())
 )
 async def read_url(
     url: str,
-    request: Request = Depends()
+    api_key: str
 ) -> Dict[str, Any]:
     """Read content from a URL using Jina's Reader API."""
     try:
-        auth_header = request.headers.get("authorization")
-        if not auth_header or not auth_header.lower().startswith("bearer "):
-            raise ValueError("Missing or invalid Authorization header")
-        api_key = auth_header.split(" ", 1)[1]
         jina_client = JinaClient(api_key=api_key)
         response = await jina_client.read_url(url)
         return {"result": {"content": response}}
@@ -81,14 +77,10 @@ async def read_url(
 )
 async def search(
     q: str,
-    request: Request = Depends()
+    api_key: str
 ) -> dict:
     """Search using Jina's Search API."""
     try:
-        auth_header = request.headers.get("authorization")
-        if not auth_header or not auth_header.lower().startswith("bearer "):
-            raise ValueError("Missing or invalid Authorization header")
-        api_key = auth_header.split(" ", 1)[1]
         jina_client = JinaClient(api_key=api_key)
         result = await jina_client.search(q)
         return {"result": result}
