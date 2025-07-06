@@ -6,12 +6,13 @@ import uuid
 from typing import Any, Dict, List, Optional, AsyncGenerator
 
 from mcp.server.fastmcp import FastMCP
+from mcp.server.fastmcp.exceptions import ToolError
 from pydantic import BaseModel, Field
 from sse_starlette.sse import EventSourceResponse
 from fastapi import Request, Response, FastAPI, Depends
 from fastapi.middleware.cors import CORSMiddleware
 
-from .config import settings, DOCS_HTML
+from .config import settings
 from .client import JinaClient
 
 # Configure logging

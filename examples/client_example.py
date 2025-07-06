@@ -10,7 +10,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Configuration
-MCP_SERVER_URL = os.getenv("MCP_SERVER_URL", "http://localhost:8000")
+MCP_SERVER_URL = os.getenv("MCP_SERVER_URL", "https://jina-mcp.onrender.com")
 JINA_API_KEY = os.getenv("JINA_API_KEY")
 
 
