@@ -10,7 +10,6 @@ class Settings(BaseSettings):
     """Application settings loaded from environment variables."""
 
     # Jina API Configuration
-    jina_api_key: str = Field(..., env="JINA_API_KEY")
     jina_api_base: str = Field(
         "https://api.jina.ai",  # Hardcoded Jina API base URL
         description="Base URL for Jina API",
