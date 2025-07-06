@@ -143,24 +143,6 @@ async def sse_endpoint(request: Request):
     """SSE endpoint for real-time updates."""
     return EventSourceResponse(event_generator(request))
 
-# Root endpoint for documentation
-@app.get("/", response_class=Response)
-async def root():
-    """Serve the HTML documentation page."""
-    return Response(content=DOCS_HTML, media_type="text/html")
-
-# Health check endpoint
-@app.get("/health")
-async def health_check():
-    """Health check endpoint."""
-    return {"status": "healthy", "service": "jina-mcp"}
-
-# MCP discovery endpoint
-@app.get("/.well-known/mcp.json")
-async def mcp_discovery() -> Dict[str, Any]:
-    """MCP discovery endpoint with SSE support."""
-    return mcp.discovery_document()
-
 def run_server():
     """Run the MCP server with SSE support."""
     logger.info(f"Starting Jina MCP Server with SSE on {settings.host}:{settings.port}")
