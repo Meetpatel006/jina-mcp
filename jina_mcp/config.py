@@ -133,7 +133,7 @@ eventSource.onmessage = (event) => {
             <p><code>POST /search</code> - Perform a search query</p>
             <p>Example request:</p>
             <pre><code>{
-    "method": "jina.search",
+    "method": "jina_search",
     "params": {
         "q": "your search query",
         "limit": 5
@@ -146,7 +146,7 @@ eventSource.onmessage = (event) => {
             <p><code>POST /read</code> - Read content from a URL</p>
             <p>Example request:</p>
             <pre><code>{
-    "method": "jina.reader",
+    "method": "jina_reader",
     "params": {
         "url": "https://example.com"
     }
@@ -167,8 +167,8 @@ eventSource.onmessage = (event) => {
     <div class="section">
         <h2>Available Tools</h2>
         <ul>
-            <li><strong>jina.search</strong>: Search the web using Jina AI</li>
-            <li><strong>jina.reader</strong>: Read content from a URL using Jina's reader</li>
+            <li><strong>jina_search</strong>: Search the web using Jina AI</li>
+            <li><strong>jina_reader</strong>: Read content from a URL using Jina's reader</li>
         </ul>
     </div>
 </body>

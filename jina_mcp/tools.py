@@ -35,14 +35,14 @@ class JinaTools:
     def _get_tools(self) -> Dict[str, ToolDefinition]:
         """Get all available tools."""
         return {
-            "jina.reader": self._get_reader_tool(),
-            "jina.search": self._get_search_tool(),
+            "jina_reader": self._get_reader_tool(),
+            "jina_search": self._get_search_tool(),
         }
 
     def _get_reader_tool(self) -> ToolDefinition:
         """Get the reader tool definition."""
         return ToolDefinition(
-            name="jina.reader",
+            name="jina_reader",
             description="Read content from a URL using Jina's Reader API",
             parameters=[
                 ToolParameter(
@@ -58,7 +58,7 @@ class JinaTools:
     def _get_search_tool(self) -> ToolDefinition:
         """Get the search tool definition."""
         return ToolDefinition(
-            name="jina.search",
+            name="jina_search",
             description="Search using Jina's Search API",
             parameters=[
                 ToolParameter(
@@ -92,9 +92,9 @@ class JinaTools:
         Returns:
             Tool execution result
         """
-        if name == "jina.reader":
+        if name == "jina_reader":
             return await self.client.read_url(**parameters)
-        elif name == "jina.search":
+        elif name == "jina_search":
             return await self.client.search(**parameters)
         else:
             raise ValueError(f"Unknown tool: {name}")

@@ -35,7 +35,7 @@ async def main():
         # Test the reader tool
         print("\nTesting URL reader...")
         reader_result = await client.execute_tool(
-            "jina.reader",
+            "jina_reader",
             {
                 "url": "https://jina.ai",
                 "x_with_links_summary": True,
@@ -47,7 +47,7 @@ async def main():
         # Test the search tool
         print("\nTesting search...")
         search_result = await client.execute_tool(
-            "jina.search",
+            "jina_search",
             {
                 "q": "Jina AI",
                 "limit": 3,
@@ -60,7 +60,7 @@ async def main():
         print("\nTesting streaming search...")
         try:
             async for chunk in client.stream_tool(
-                "jina.search",
+                "jina_search",
                 {
                     "q": "Jina AI",
                     "limit": 2,

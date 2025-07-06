@@ -57,7 +57,7 @@ app.mount("/sse", mcp.sse_app())
 # Tool Definitions
 
 @mcp.tool(
-    name="jina.reader",
+    name="jina_reader",
     description="Read content from a URL using Jina's Reader API"
 )
 async def read_url(
@@ -73,7 +73,7 @@ async def read_url(
         raise e
 
 @mcp.tool(
-    name="jina.search",
+    name="jina_search",
     description="Search using Jina's Search API"
 )
 async def search(

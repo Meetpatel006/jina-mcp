@@ -227,10 +227,10 @@ class JinaClient:
             }
             
         # Handle Jina API methods
-        elif method == "jina.reader":
+        elif method == "jina_reader":
             return await self.read_url(stream=stream, **params)
             
-        elif method == "jina.search":
+        elif method == "jina_search":
             return await self.search(stream=stream, **params)
             
         else:
