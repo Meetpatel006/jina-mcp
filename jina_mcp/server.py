@@ -8,7 +8,7 @@ from typing import Any, Dict, List, Optional, AsyncGenerator
 from mcp.server.fastmcp import FastMCP
 from pydantic import BaseModel, Field
 from sse_starlette.sse import EventSourceResponse
-from fastapi import Request, Response, FastAPI
+from fastapi import Request, Response, FastAPI, Depends
 from fastapi.middleware.cors import CORSMiddleware
 
 from .config import settings, DOCS_HTML
@@ -59,7 +59,7 @@ app.mount("/sse", mcp.sse_app())
 )
 async def read_url(
     url: str,
-    request: Request
+    request: Request = Depends()
 ) -> Dict[str, Any]:
     """Read content from a URL using Jina's Reader API."""
     try:
@@ -81,7 +81,7 @@ async def read_url(
 )
 async def search(
     q: str,
-    request: Request
+    request: Request = Depends()
 ) -> dict:
     """Search using Jina's Search API."""
     try:
